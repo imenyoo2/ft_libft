@@ -1,7 +1,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "main.h"
+#include "libft.h"
 #include <limits.h>
 #include <ctype.h>
 
@@ -391,13 +391,22 @@ int main(int argc, char **argv)
 		}
 		free(buffer);
 
-		buffer = ft_substr("hello world", 5, 0);
-		if (buffer != NULL)
+		buffer = ft_substr("hola", 2, 30);
+		if (strncmp("la", buffer, 5))
 		{
-			printf("\t[!] expected nil got %s\n", buffer);
+			printf("\t[!] expected 'world' got '%s'\n", buffer);
 			passed = 0;
-			free(buffer);
 		}
+		free(buffer);
+
+
+		buffer = ft_substr("hello world", 5, 0);
+		if (strncmp("", buffer, 0))
+		{
+			printf("\t[!] expected '' got '%s'\n", buffer);
+			passed = 0;
+		}
+		free(buffer);
 
 		if (passed)
 			puts("\tall tests have passed!\n");
@@ -466,6 +475,14 @@ int main(int argc, char **argv)
 		}
 		free(buffer);
 
+		buffer = ft_strtrim("        ", " ");
+		if (strcmp("", buffer))
+		{
+			printf("\t[!] expected '', got %s\n", buffer);
+			passed = 0;
+		}
+		free(buffer);
+
 		if (passed)
 			puts("\tall tests have passed!\n");
 	}
@@ -496,6 +513,22 @@ int main(int argc, char **argv)
 		if (strcmp("-9", buffer))
 		{
 			printf("\t[!] expected '-9', got %s\n", buffer);
+			passed = 0;
+		}
+		free(buffer);
+
+		buffer = ft_itoa(10);
+		if (strcmp("10", buffer))
+		{
+			printf("\t[!] expected '10', got %s\n", buffer);
+			passed = 0;
+		}
+		free(buffer);
+
+		buffer = ft_itoa(12345);
+		if (strcmp("12345", buffer))
+		{
+			printf("\t[!] expected '12345', got %s\n", buffer);
 			passed = 0;
 		}
 		free(buffer);
