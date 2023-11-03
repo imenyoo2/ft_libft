@@ -1,8 +1,18 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/03 16:51:42 by ayait-el          #+#    #+#             */
+/*   Updated: 2023/11/03 16:52:53 by ayait-el         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t min(size_t a, size_t b)
+static size_t	min(size_t a, size_t b)
 {
 	if (a > b)
 		return (b);
@@ -10,10 +20,10 @@ static size_t min(size_t a, size_t b)
 		return (a);
 }
 
-char *ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t i;
-	char *sub;
+	size_t	i;
+	char	*sub;
 
 	i = 0;
 	if (ft_strlen(s) <= start)

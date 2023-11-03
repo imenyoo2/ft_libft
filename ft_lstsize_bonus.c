@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 15:05:18 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/03 15:05:35 by ayait-el         ###   ########.fr       */
+/*   Created: 2023/11/03 15:27:52 by ayait-el          #+#    #+#             */
+/*   Updated: 2023/11/03 15:28:00 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// TODO: if ft_memset works this should also work
-
-void	ft_bzero(void *s, size_t n)
+int	ft_lstsize(t_list *lst)
 {
-	ft_memset(s, 0, n);
+	int	counter;
+
+	counter = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		counter++;
+	}
+	return (counter);
 }

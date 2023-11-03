@@ -1,11 +1,21 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/03 15:20:11 by ayait-el          #+#    #+#             */
+/*   Updated: 2023/11/03 15:20:50 by ayait-el         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-static int get_malloc_size(int n)
+static int	get_malloc_size(int n)
 {
-	int size;
-	long holder;
+	int		size;
+	long	holder;
 
 	size = 1;
 	holder = n;
@@ -23,7 +33,7 @@ static int get_malloc_size(int n)
 	return (size);
 }
 
-static int int2str(char *buffer, long n, int index)
+static int	int2str(char *buffer, long n, int index)
 {
 	if (n < 0)
 	{
@@ -41,10 +51,10 @@ static int int2str(char *buffer, long n, int index)
 	return (index + 1);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	int malloc_size;
-	char *result;
+	int		malloc_size;
+	char	*result;
 
 	malloc_size = get_malloc_size(n);
 	result = malloc((malloc_size + 1) * sizeof(char));
@@ -54,4 +64,3 @@ char *ft_itoa(int n)
 	result[malloc_size] = '\0';
 	return (result);
 }
-

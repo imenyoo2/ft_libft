@@ -1,15 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_helpers.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/03 15:09:40 by ayait-el          #+#    #+#             */
+/*   Updated: 2023/11/03 15:09:56 by ayait-el         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
-#include "main.h"
+#include "libft.h"
 #include <stdio.h>
 #include <ctype.h>
 
-
-void print_array(void *array, int size)
+// TODO: REMOVE FROM GIT
+void	print_array(void *array, int size)
 {
-	char *array_holder = array;
-	int i;
+	char	*array_holder;
+	int		i;
 
+	array_holder = array;
 	printf("\t[");
 	for (i = 0; i < size - 1; i++)
 	{

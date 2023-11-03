@@ -1,20 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 15:05:18 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/03 15:05:35 by ayait-el         ###   ########.fr       */
+/*   Created: 2023/11/03 16:05:54 by ayait-el          #+#    #+#             */
+/*   Updated: 2023/11/03 16:07:30 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// TODO: if ft_memset works this should also work
-
-void	ft_bzero(void *s, size_t n)
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	ft_memset(s, 0, n);
+	size_t	i;
+	size_t	return_value;
+	size_t	j;
+
+	i = ft_strlen(dst);
+	return_value = ft_strlen(src);
+	if (i >= dstsize)
+		return_value += dstsize;
+	else
+		return_value += i;
+	if (dstsize == 0)
+		return (return_value);
+	j = 0;
+	while (i < dstsize - 1 && src[j])
+	{
+		dst[i] = src[j];
+		i++;
+		j++;
+	}
+	dst[i] = '\0';
+	return (return_value);
 }

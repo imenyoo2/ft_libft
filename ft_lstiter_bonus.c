@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   ft_lstiter_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 15:05:18 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/03 15:05:35 by ayait-el         ###   ########.fr       */
+/*   Created: 2023/11/03 15:24:20 by ayait-el          #+#    #+#             */
+/*   Updated: 2023/11/03 15:24:28 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// TODO: if ft_memset works this should also work
-
-void	ft_bzero(void *s, size_t n)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	ft_memset(s, 0, n);
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

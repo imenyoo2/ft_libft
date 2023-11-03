@@ -66,8 +66,10 @@ size_t set_bits(int argc, char **argv)
 			bits = bits | 32768;
 		else if (!strcmp(argv[i], "lstlast"))
 			bits = bits | 65536;
+		else if (!strcmp(argv[i], "strncmp"))
+			bits = bits | 131072;
 		else if (!strcmp(argv[i], "mandatory"))
-			bits = bits | 8191; // 0b1111111111111
+			bits = bits | 139263; //   0b100001111111111111
 		else if (!strcmp(argv[i], "bonus"))
 			bits = bits | 122880; // 0b11110000000000000
 		i++;
@@ -641,6 +643,19 @@ int main(int argc, char **argv)
 		free(new);
 		free(new2);
 
+		if (passed)
+			puts("\tall tests have passed!\n");
+	}
+	if (bits & 131072) // strncmp
+	{
+		int passed = 1;
+
+		puts("-> strncmp\n");
+		if (ft_strncmp("abcdef", "abc\375xx", 5) >= 0)
+		{
+			printf("\texpected negative got positive\n");
+			passed = 0;
+		}
 		if (passed)
 			puts("\tall tests have passed!\n");
 	}

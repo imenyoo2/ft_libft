@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/11/03 16:26:01 by ayait-el          #+#    #+#             */
+/*   Updated: 2023/11/03 16:26:55 by ayait-el         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "libft.h"
 
-
-static int is_in(char c, char const *set)
+static int	is_in(char c, char const *set)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (set[i])
@@ -16,12 +26,12 @@ static int is_in(char c, char const *set)
 	return (0);
 }
 
-char *ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t start;
-	size_t end;
-	char *result;
-	size_t i;
+	size_t	start;
+	size_t	end;
+	char	*result;
+	size_t	i;
 
 	if (s1 == NULL || set == NULL)
 		return (NULL);
@@ -36,8 +46,9 @@ char *ft_strtrim(char const *s1, char const *set)
 		while (is_in(s1[end], set) && end > 0)
 			end--;
 	}
-	
 	result = malloc(sizeof(char) * (end - start + 2));
+	if (result == NULL)
+		return (NULL);
 	i = 0;
 	while (start <= end)
 	{

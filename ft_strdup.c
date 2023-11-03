@@ -1,39 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 15:06:06 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/03 15:06:18 by ayait-el         ###   ########.fr       */
+/*   Created: 2023/11/03 15:53:36 by ayait-el          #+#    #+#             */
+/*   Updated: 2023/11/03 16:03:12 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	is_overflow(size_t a, size_t b)
-{
-	size_t	result;
+/*
+	 int     str_len(char *str)
+	 {
+	 int     i;
 
-	if (a == 0 || b == 0) 
-		return (0);
-	result = a * b;
-	if (a == result / b)
-		return (0);
-	else
-		return (1);
+	 i = 0;
+	 while (str[i])
+	 i++;
+	 return (i);
+	 }
+	 */
+static char	*ft_strcpy(char *dest, const char *src)
+{
+	char	*buffer;
+
+	buffer = dest;
+	while (*src)
+	{
+		*dest = *src;
+		src++;
+		dest++;
+	}
+	*dest = *src;
+	return (buffer);
 }
 
-void	*ft_calloc(size_t nmemb, size_t size)
+char	*ft_strdup(const char *s1)
 {
-	void	*mem;
+	char	*new;
 
-	if (is_overflow(nmemb, size))
+	new = malloc(sizeof(char) * ft_strlen(s1) + 1);
+	if (new == NULL)
+	{
+		errno = 132;
 		return (NULL);
-	mem = malloc(nmemb * size);
-	if (mem == NULL)
-		return (NULL);
-	ft_bzero(mem, nmemb * size);
-	return (mem);
+	}
+	ft_strcpy(new, s1);
+	return (new);
 }
