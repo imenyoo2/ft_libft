@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:39:51 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/03 15:43:18 by ayait-el         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:44:26 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	add_list(char *start, char *end, t_list **head, t_list **base)
 	t_list	*new;
 	char	*content;
 
-	content = ft_substr(start, 0, end - start);
+  content = ft_substr(start, 0, end - start);
 	if (content == NULL)
 		return (0);
 	if (*content == '\0')
@@ -41,7 +41,10 @@ static int	add_list(char *start, char *end, t_list **head, t_list **base)
 	}
 	new = malloc(sizeof(t_list));
 	if (new == NULL)
-		return (0);
+  {
+    free(content);
+    return (0);
+  }
 	new->content = content;
 	new->next = NULL;
 	if (*head)
@@ -52,7 +55,6 @@ static int	add_list(char *start, char *end, t_list **head, t_list **base)
 	return (1);
 }
 
-// TODO: free the linked list on error
 static int	get_malloc_size(char const *s, char c, t_list **head, t_list **base)
 {
 	int		count;
@@ -78,14 +80,29 @@ static int	get_malloc_size(char const *s, char c, t_list **head, t_list **base)
 	return (count);
 }
 
+static void	fill_array(char **arr, t_list *base)
+{
+	t_list	*tmp;
+	size_t	i;
+
+	i = 0;
+	while (base)
+	{
+		arr[i] = base->content;
+		tmp = base;
+		base = base->next;
+		free(tmp);
+		i++;
+	}
+	arr[i] = NULL;
+}
+
 char	**ft_split(char const *s, char c)
 {
 	t_list	*head;
 	t_list	*base;
 	int		malloc_size;
 	char	**arr;
-	size_t	i;
-	t_list	*tmp;
 
 	head = NULL;
 	base = NULL;
@@ -97,16 +114,18 @@ char	**ft_split(char const *s, char c)
 	}
 	arr = malloc(sizeof(char *) * (malloc_size + 1));
 	if (arr == NULL)
+  {
+		free_list(base);
 		return (NULL);
-	i = 0;
-	while (base)
-	{
-		arr[i] = base->content;
-		tmp = base;
-		base = base->next;
-		free(tmp);
-		i++;
-	}
-	arr[i] = NULL;
+  }
+	fill_array(arr, base);
 	return (arr);
 }
+
+/*
+int main(void)
+{
+  ft_split("hello!", 32:' ');
+  return 0;
+}
+*/

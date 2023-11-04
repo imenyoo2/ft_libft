@@ -6,41 +6,53 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:26:08 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/03 16:15:42 by ayait-el         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:45:36 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-// TODO: not tested
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+static int	fill_list(t_list *lst, t_list *head, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*head;
-	t_list	*tmp;
-	t_list	*holder;
+	void *modcontent;
+	t_list *tmp;
+	t_list *holder;
 
-	if (!lst || !f || !del)
-		return (NULL);
-	head = malloc(sizeof(t_list));
-	if (head == NULL)
-		return (NULL);
-	head->content = f(lst->content);
-	head->next = NULL;
-	lst = lst->next;
 	holder = head;
 	while (lst)
 	{
-		tmp = malloc(sizeof(t_list));
+		modcontent = f(lst->content);
+		tmp = ft_lstnew(modcontent);
 		if (tmp == NULL)
 		{
 			ft_lstclear(&head, del);
-			return (NULL);
+			free(modcontent);
+			return (0);
 		}
-		tmp->content = f(lst->content);
-		tmp->next = NULL;
 		holder->next = tmp;
 		holder = tmp;
 		lst = lst->next;
 	}
+	return (1);
+}
+
+// TODO: not tested
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+{
+	t_list	*head;
+	void *modcontent;
+
+	if (!lst || !f || !del)
+		return (NULL);
+	modcontent = f(lst->content);
+	head = ft_lstnew(modcontent);
+	if (head == NULL)
+	{
+		free(modcontent);
+		return (NULL);
+	}
+	lst = lst->next;
+	if (!fill_list(lst, head, f, del))
+		return (NULL);
 	return (head);
 }

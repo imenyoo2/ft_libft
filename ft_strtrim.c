@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:26:01 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/03 16:26:55 by ayait-el         ###   ########.fr       */
+/*   Updated: 2023/11/04 11:55:46 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,26 @@ static int	is_in(char c, char const *set)
 	return (0);
 }
 
+static void	fill_array(const char *src, char *result, size_t start, size_t end)
+{
+	size_t	i;
+
+	i = 0;
+	while (start <= end)
+	{
+		result[i] = src[start];
+		start++;
+		i++;
+	}
+  if (result[i - 1])
+    result[i] = '\0';
+}
+
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	start;
 	size_t	end;
 	char	*result;
-	size_t	i;
 
 	if (s1 == NULL || set == NULL)
 		return (NULL);
@@ -46,16 +60,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 		while (is_in(s1[end], set) && end > 0)
 			end--;
 	}
-	result = malloc(sizeof(char) * (end - start + 2));
+  if (*s1 == '\0')
+    result = malloc(sizeof(char) * (end - start + 1));
+  else
+    result = malloc(sizeof(char) * (end - start + 2));
 	if (result == NULL)
 		return (NULL);
-	i = 0;
-	while (start <= end)
-	{
-		result[i] = s1[start];
-		start++;
-		i++;
-	}
-	result[i] = '\0';
+	fill_array(s1, result, start, end);
 	return (result);
 }
