@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:08:45 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/03 16:08:52 by ayait-el         ###   ########.fr       */
+/*   Updated: 2023/11/04 17:31:44 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*result;
 	size_t	i;
 
+	if (s == NULL || f == NULL)
+		return (NULL);
 	result = malloc(sizeof(char) * (ft_strlen(s) + 1));
 	if (result == NULL)
 		return (NULL);

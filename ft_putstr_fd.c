@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:39:23 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/03 15:39:32 by ayait-el         ###   ########.fr       */
+/*   Updated: 2023/11/04 16:17:48 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	size_t	len;
 
-	len = ft_strlen(s);
-	write(fd, s, len);
+	if (s)
+	{
+		len = ft_strlen(s);
+		write(fd, s, len);
+	}
 }
