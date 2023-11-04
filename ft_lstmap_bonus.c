@@ -6,17 +6,18 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:26:08 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/04 13:45:36 by ayait-el         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:47:26 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	fill_list(t_list *lst, t_list *head, void *(*f)(void *), void (*del)(void *))
+static int	fill_list(t_list *lst, t_list *head,
+		void *(*f)(void *), void (*del)(void *))
 {
-	void *modcontent;
-	t_list *tmp;
-	t_list *holder;
+	void	*modcontent;
+	t_list	*tmp;
+	t_list	*holder;
 
 	holder = head;
 	while (lst)
@@ -40,7 +41,7 @@ static int	fill_list(t_list *lst, t_list *head, void *(*f)(void *), void (*del)(
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*head;
-	void *modcontent;
+	void	*modcontent;
 
 	if (!lst || !f || !del)
 		return (NULL);

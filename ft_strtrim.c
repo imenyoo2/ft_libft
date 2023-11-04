@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 16:26:01 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/04 11:55:46 by ayait-el         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:48:23 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ static void	fill_array(const char *src, char *result, size_t start, size_t end)
 		start++;
 		i++;
 	}
-  if (result[i - 1])
-    result[i] = '\0';
+	if (result[i - 1])
+		result[i] = '\0';
 }
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -60,10 +60,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 		while (is_in(s1[end], set) && end > 0)
 			end--;
 	}
-  if (*s1 == '\0')
-    result = malloc(sizeof(char) * (end - start + 1));
-  else
-    result = malloc(sizeof(char) * (end - start + 2));
+	if (*s1 == '\0')
+		result = malloc(sizeof(char) * (end - start + 1));
+	else
+		result = malloc(sizeof(char) * (end - start + 2));
 	if (result == NULL)
 		return (NULL);
 	fill_array(s1, result, start, end);
