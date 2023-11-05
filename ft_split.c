@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:39:51 by ayait-el          #+#    #+#             */
-/*   Updated: 2023/11/04 16:28:44 by ayait-el         ###   ########.fr       */
+/*   Updated: 2023/11/05 10:51:00 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ char	**ft_split(char const *s, char c)
 	int		malloc_size;
 	char	**arr;
 
+	if (!s)
+		return (NULL);
 	head = NULL;
 	base = NULL;
 	malloc_size = get_malloc_size(s, c, &head, &base);
